@@ -1,5 +1,5 @@
 #!/usr/bin/env/python
-# File name   : server.py
+# File name   : webServer.py
 # Production  : GWR
 # Website     : www.adeept.com
 # Author      : William
@@ -519,7 +519,7 @@ if __name__ == '__main__':
         RL.start()
         RL.breath(70,70,255)
     except:
-        print('Use "sudo pip3 install rpi_ws281x" to install WS_281x package\n使用"sudo pip3 install rpi_ws281x"命令来安装rpi_ws281x')
+        print('Use "sudo pip3 install rpi_ws281x" to install WS_281x package\nuse"sudo pip3 install rpi_ws281x" Command to install rpi_ws281x')
         pass
 
     while  1:

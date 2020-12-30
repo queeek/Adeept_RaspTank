@@ -86,6 +86,11 @@ try:
 except:
 	print('try again')
 
+try: #instead of enabling i2c in raspi-config optimize with check upfront of already there
+	with open("/etc/modules",'a') as file_to_write:
+		file_to_write.write("\ni2c.bcm2708\ni2c-dev")
+except:
+	pass
 
 for x in range(1,4):
 	if os.system("sudo pip3 install numpy") == 0:
@@ -96,7 +101,15 @@ for x in range(1,4):
 		break
 
 for x in range(1,4):
+	if os.system('sudo pip3 install RPi.GPIO') == 0:
+		break
+
+for x in range(1,4):
 	if os.system("sudo apt-get -y install libqtgui4 libhdf5-dev libhdf5-serial-dev libatlas-base-dev libjasper-dev libqt4-test") == 0:
+		break
+
+for x in range(1,4):
+	if os.system("sudo apt-get -y install libharfbuzz0b") == 0:
 		break
 
 for x in range(1,4):
@@ -132,6 +145,7 @@ except:
 
 os.system('sudo chmod 777 //home/pi/startup.sh')
 
+# optimize check upfront  if already existing
 replace_num('/etc/rc.local','fi','fi\n//home/pi/startup.sh start')
 
 try: #fix conflict with onboard Raspberry Pi audio
@@ -141,8 +155,11 @@ try: #fix conflict with onboard Raspberry Pi audio
 except:
 	pass
 
-os.system("sudo cp -f //home/pi/adeept_rasptank/server/config.txt //etc/config.txt")
+try:
+	os.system("sudo cp -f " + thisPath + "/server/config.txt //etc/config.txt")
+except:
+	pass
 
 print('The program in Raspberry Pi has been installed, disconnected and restarted. \nYou can now power off the Raspberry Pi to install the camera and driver board (Robot HAT). \nAfter turning on again, the Raspberry Pi will automatically run the program to set the servos port signal to turn the servos to the middle position, which is convenient for mechanical assembly.')
 print('restarting...')
-os.system("sudo reboot")
+os.system("sudo shutdown now")

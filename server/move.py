@@ -99,10 +99,10 @@ def motor_right(status, direction, speed):#Motor 1 positive and negative rotatio
 def move(speed, direction, turn, radius=0.6):   # 0 < radius <= 1  
 	#speed = 100
 	if direction == 'forward':
-		if turn == 'right':
+		if turn == 'left':
 			motor_left(0, left_backward, int(speed*radius))
 			motor_right(1, right_forward, speed)
-		elif turn == 'left':
+		elif turn == 'right':
 			motor_left(1, left_forward, speed)
 			motor_right(0, right_backward, int(speed*radius))
 		else:
@@ -119,10 +119,10 @@ def move(speed, direction, turn, radius=0.6):   # 0 < radius <= 1
 			motor_left(1, left_backward, speed)
 			motor_right(1, right_backward, speed)
 	elif direction == 'no':
-		if turn == 'right':
+		if turn == 'left':
 			motor_left(1, left_backward, speed)
 			motor_right(1, right_forward, speed)
-		elif turn == 'left':
+		elif turn == 'right':
 			motor_left(1, left_forward, speed)
 			motor_right(1, right_backward, speed)
 		else:
